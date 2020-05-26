@@ -73,4 +73,27 @@ public class MateriaData {
         }
         return listaMaterias;
     }
+    
+    public Materia buscarMateria(int id) {
+        Materia materia = new Materia();
+        String sql = "SELECT * FROM materia WHERE materia_id = ?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()) {
+                materia.setId(rs.getInt("id"));
+                materia.setNombre(rs.getString("nombre"));
+            }
+            
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return materia;
+    }
 }
