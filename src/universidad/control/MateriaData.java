@@ -96,4 +96,35 @@ public class MateriaData {
         
         return materia;
     }
+    
+    public void borrarMateria(int id) {
+        String sql = "DELETE FROM materia WHERE id = ?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            ps.executeUpdate();
+            
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void actualizarMateria(Materia materia) {
+        String sql = "UPDATE MATERIA SET nombre = ? WHERE id = ?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, materia.getId());
+            ps.setString(2, materia.getNombre());
+            
+            ps.executeUpdate();
+            
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
