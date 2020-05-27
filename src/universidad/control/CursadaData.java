@@ -21,7 +21,7 @@ public class CursadaData {
     private Connection connection = null;
     private Conexion conexion;
     
-    private final String SQL_INSERT = "INSERT INTO cursada(id_alumno, id_materia, nota) VALUES (?, ?, ?)"; //Query para insertar una Cursada
+    private final String SQL_INSERT = "INSERT INTO cursada(idAlumno, idMateria, nota) VALUES (?, ?, ?)"; //Query para insertar una Cursada
        
     private final String SQL_DELETE = "DELETE FROM cursada WHERE id_materia = ?";
     

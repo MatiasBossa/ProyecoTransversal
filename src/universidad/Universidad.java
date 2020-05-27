@@ -5,12 +5,15 @@
  */
 package universidad;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import universidad.modelo.Alumno;
 import universidad.control.AlumnoData;
 import universidad.control.Conexion;
+import universidad.control.CursadaData;
 import universidad.control.MateriaData;
+import universidad.modelo.Cursada;
 import universidad.modelo.Materia;
 
 /**
@@ -31,7 +34,7 @@ public class Universidad {
                 cargarConexion = new Conexion();
                 
 
-                //Alumno al = new Alumno("Carlos", LocalDate.now(), true);
+                //Alumno alumno = new Alumno("Carlos", LocalDate.now(), true);
                 AlumnoData ad = new AlumnoData(cargarConexion);
                 //ad.guardarAlumno(al);
 
@@ -56,11 +59,24 @@ public class Universidad {
                 MateriaData md = new MateriaData(cargarConexion);
                 //Materia materia = new Materia("Laboratorio I");
                 //md.guardarMateria(materia);
+                
+                /*
                 List<Materia> materias = new ArrayList<Materia>();
                 materias = md.obtenerMaterias();
                 for (Materia m:materias) {
                     System.out.println("Id: " + m.toString());
                 }
+                */
+                
+
+                Alumno alumno = new Alumno();
+                alumno = ad.buscarAlumno(3);
+                Materia materia = new Materia();
+                materia = md.buscarMateria(3);
+                
+                Cursada cursada = new Cursada(alumno,materia,10);
+                CursadaData cd = new CursadaData(cargarConexion);                
+                cd.guardarCursada(cursada);
                 
             }catch (ClassNotFoundException ex) {
                 //Logger.getLogger(Universidad.class.getName()).log(Level.SEVERE, null, ex);

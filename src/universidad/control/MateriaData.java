@@ -76,7 +76,7 @@ public class MateriaData {
     
     public Materia buscarMateria(int id) {
         Materia materia = new Materia();
-        String sql = "SELECT * FROM materia WHERE materia_id = ?;";
+        String sql = "SELECT * FROM materia WHERE id = ?;";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
