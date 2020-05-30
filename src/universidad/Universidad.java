@@ -72,11 +72,12 @@ public class Universidad {
                 Alumno alumno = new Alumno();
                 alumno = ad.buscarAlumno(3);
                 Materia materia = new Materia();
-                materia = md.buscarMateria(3);
+                materia = md.buscarMateria(2);
                 
                 Cursada cursada = new Cursada(alumno,materia,10);
                 CursadaData cd = new CursadaData(cargarConexion);                
                 cd.guardarCursada(cursada);
+                
                 
             }catch (ClassNotFoundException ex) {
                 //Logger.getLogger(Universidad.class.getName()).log(Level.SEVERE, null, ex);

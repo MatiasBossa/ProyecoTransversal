@@ -27,7 +27,7 @@ public class CursadaData {
     
     private final String SQL_SELECT_ALL = "SELECT * FROM cursada";
     
-    private final String SQL_SELECT = "SELECT * FROM cursada WHERE id_alumno = ?";
+    private final String SQL_SELECT = "SELECT * FROM cursada WHERE idAlumno = ?";
     
     private final String SQL_SELECT_MAT = "SELECT materia.id, materia.nombre  FROM materia, cursada WHERE cursada.idMateria = materia.id AND cursada.idAlumno = ? ";
     
