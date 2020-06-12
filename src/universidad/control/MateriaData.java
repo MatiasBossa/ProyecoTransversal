@@ -116,8 +116,8 @@ public class MateriaData {
         String sql = "UPDATE MATERIA SET nombre = ? WHERE id = ?;";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, materia.getId());
-            ps.setString(2, materia.getNombre());
+            ps.setString(1, materia.getNombre());
+            ps.setInt(2, materia.getId());
             
             ps.executeUpdate();
             

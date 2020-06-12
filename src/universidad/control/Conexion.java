@@ -40,8 +40,11 @@ public class Conexion {
     public Connection getConexion() throws SQLException{
         if(conexion == null){
             // Setup the connection with the DB
+            //conexion = DriverManager
+            //    .getConnection(URL + "?useLegacyDatetimeCode=false&serverTimezone=UTC"
+            //            + "&user=" + usuario + "&password=" + password);
             conexion = DriverManager
-                .getConnection(URL + "?useLegacyDatetimeCode=false&serverTimezone=UTC"
+                .getConnection(URL + "?useLegacyDatetimeCode=false&serverTimezone=America/Buenos_Aires"
                         + "&user=" + usuario + "&password=" + password);
 
         }
