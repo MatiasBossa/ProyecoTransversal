@@ -38,6 +38,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         item_alumno = new javax.swing.JMenuItem();
         menu_inscripcion = new javax.swing.JMenu();
         item_inscripcion = new javax.swing.JMenuItem();
+        item_nota = new javax.swing.JMenuItem();
         menu_consulta = new javax.swing.JMenu();
         item_alumnos_x_materia = new javax.swing.JMenuItem();
         item_materias_x_alumno = new javax.swing.JMenuItem();
@@ -91,19 +92,32 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(menu_alumno);
 
-        menu_inscripcion.setText("Incripciones");
+        menu_inscripcion.setText("Cursadas");
 
         item_inscripcion.setText("Incripciones de Alumnos en Materias");
         menu_inscripcion.add(item_inscripcion);
+
+        item_nota.setText("Registrar Notas de Alumno en Materia");
+        menu_inscripcion.add(item_nota);
 
         jMenuBar1.add(menu_inscripcion);
 
         menu_consulta.setText("Consultas");
 
         item_alumnos_x_materia.setText("Listado de Alumonos Por Materia");
+        item_alumnos_x_materia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_alumnos_x_materiaActionPerformed(evt);
+            }
+        });
         menu_consulta.add(item_alumnos_x_materia);
 
         item_materias_x_alumno.setText("Listado de Materias Por Alumno");
+        item_materias_x_alumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_materias_x_alumnoActionPerformed(evt);
+            }
+        });
         menu_consulta.add(item_materias_x_alumno);
 
         jMenuBar1.add(menu_consulta);
@@ -148,6 +162,26 @@ public class frmPrincipal extends javax.swing.JFrame {
         escritorio.moveToFront(frm);
     }//GEN-LAST:event_item_alumnoActionPerformed
 
+    private void item_alumnos_x_materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_alumnos_x_materiaActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        frmAlumnosPorMateria frm = new frmAlumnosPorMateria();
+        frm.setVisible(true);
+        escritorio.add(frm);
+        escritorio.moveToFront(frm);
+    }//GEN-LAST:event_item_alumnos_x_materiaActionPerformed
+
+    private void item_materias_x_alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_materias_x_alumnoActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        frmMateriasPorAlumno frm = new frmMateriasPorAlumno();
+        frm.setVisible(true);
+        escritorio.add(frm);
+        escritorio.moveToFront(frm);
+    }//GEN-LAST:event_item_materias_x_alumnoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -190,6 +224,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem item_inscripcion;
     private javax.swing.JMenuItem item_materia;
     private javax.swing.JMenuItem item_materias_x_alumno;
+    private javax.swing.JMenuItem item_nota;
     private javax.swing.JMenuItem item_salir;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu_alumno;

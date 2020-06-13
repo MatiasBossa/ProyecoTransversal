@@ -51,12 +51,17 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menu_inscripcion">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Incripciones"/>
+            <Property name="text" type="java.lang.String" value="Cursadas"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="item_inscripcion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Incripciones de Alumnos en Materias"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="item_nota">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar Notas de Alumno en Materia"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -70,11 +75,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listado de Alumonos Por Materia"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_alumnos_x_materiaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="item_materias_x_alumno">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listado de Materias Por Alumno"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_materias_x_alumnoActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
