@@ -17,6 +17,7 @@ public class frmPrincipal extends javax.swing.JFrame {
      */
     public frmPrincipal() {
         initComponents();
+        this.setSize(1024, 600);
     }
 
     /**
@@ -95,6 +96,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         menu_inscripcion.setText("Cursadas");
 
         item_inscripcion.setText("Incripciones de Alumnos en Materias");
+        item_inscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_inscripcionActionPerformed(evt);
+            }
+        });
         menu_inscripcion.add(item_inscripcion);
 
         item_nota.setText("Registrar Notas de Alumno en Materia");
@@ -104,7 +110,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         menu_consulta.setText("Consultas");
 
-        item_alumnos_x_materia.setText("Listado de Alumonos Por Materia");
+        item_alumnos_x_materia.setText("Listado de Alumnos Por Materia");
         item_alumnos_x_materia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 item_alumnos_x_materiaActionPerformed(evt);
@@ -181,6 +187,16 @@ public class frmPrincipal extends javax.swing.JFrame {
         escritorio.add(frm);
         escritorio.moveToFront(frm);
     }//GEN-LAST:event_item_materias_x_alumnoActionPerformed
+
+    private void item_inscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_inscripcionActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        frmInscripcion frm = new frmInscripcion();
+        frm.setVisible(true);
+        escritorio.add(frm);
+        escritorio.moveToFront(frm);
+    }//GEN-LAST:event_item_inscripcionActionPerformed
 
     /**
      * @param args the command line arguments

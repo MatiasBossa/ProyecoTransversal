@@ -23,13 +23,14 @@ import universidad.modelo.Materia;
  */
 public class frmMateriasPorAlumno extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo;
-    private ArrayList<Alumno> listaAlumnos;
-    private ArrayList<Materia> listaMaterias;
-    private ArrayList<Cursada> listaCursada;
     
     private AlumnoData alumnoData;
     private MateriaData materiaData;
     private CursadaData cursadaData;
+    
+    private ArrayList<Alumno> listaAlumnos;
+    private ArrayList<Materia> listaMaterias;
+    private ArrayList<Cursada> listaCursada;
     
     private Conexion con;
 
@@ -69,11 +70,12 @@ public class frmMateriasPorAlumno extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cbxMateria = new javax.swing.JComboBox<>();
+        cbxAlumno = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMaterias = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Materias por alumno");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
@@ -81,9 +83,9 @@ public class frmMateriasPorAlumno extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Alumnos");
 
-        cbxMateria.addActionListener(new java.awt.event.ActionListener() {
+        cbxAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxMateriaActionPerformed(evt);
+                cbxAlumnoActionPerformed(evt);
             }
         });
 
@@ -115,7 +117,7 @@ public class frmMateriasPorAlumno extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(cbxMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbxAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -127,7 +129,7 @@ public class frmMateriasPorAlumno extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbxMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(47, Short.MAX_VALUE))
@@ -136,14 +138,14 @@ public class frmMateriasPorAlumno extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMateriaActionPerformed
+    private void cbxAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAlumnoActionPerformed
         // TODO add your handling code here:
         cargarDatosTabla();
-    }//GEN-LAST:event_cbxMateriaActionPerformed
+    }//GEN-LAST:event_cbxAlumnoActionPerformed
 
     public void cargarAlumnos() {
         for(Alumno item:listaAlumnos) {
-            this.cbxMateria.addItem(item);
+            this.cbxAlumno.addItem(item);
         }
     }
     
@@ -169,7 +171,7 @@ public class frmMateriasPorAlumno extends javax.swing.JInternalFrame {
     public void cargarDatosTabla() {
         borrarFilasTabla();
         
-        Alumno al = (Alumno)this.cbxMateria.getSelectedItem();
+        Alumno al = (Alumno)this.cbxAlumno.getSelectedItem();
         for(Cursada a:listaCursada) {
             if (a.getMateria().getId() == al.getId() ) {
                 modelo.addRow(new Object[]{a.getMateria().getId(), a.getMateria().getNombre(), a.getNota()});
@@ -178,7 +180,7 @@ public class frmMateriasPorAlumno extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Alumno> cbxMateria;
+    private javax.swing.JComboBox<Alumno> cbxAlumno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

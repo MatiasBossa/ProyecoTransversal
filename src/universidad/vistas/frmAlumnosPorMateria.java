@@ -23,12 +23,15 @@ import universidad.modelo.Materia;
  */
 public class frmAlumnosPorMateria extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo;
-    private ArrayList<Cursada> listaCursada;
-    private ArrayList<Materia> listaMaterias;
-    private ArrayList<Alumno> listaAlumnos;
+
     private CursadaData cursadaData;
     private MateriaData materiaData;
     private AlumnoData alumnoData;
+
+    private ArrayList<Cursada> listaCursada;
+    private ArrayList<Materia> listaMaterias;
+    private ArrayList<Alumno> listaAlumnos;
+
     private Conexion con;
 
     /**
@@ -72,6 +75,7 @@ public class frmAlumnosPorMateria extends javax.swing.JInternalFrame {
         tblAlumos = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Alumnos por materia");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
