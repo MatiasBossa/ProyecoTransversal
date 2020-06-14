@@ -21,22 +21,6 @@ public class CursadaData {
     private Connection connection = null;
     private Conexion conexion;
     
-    private final String SQL_INSERT = "INSERT INTO cursada(idAlumno, idMateria, nota) VALUES (?, ?, ?)"; //Query para insertar una Cursada
-       
-    private final String SQL_DELETE = "DELETE FROM cursada WHERE id_materia = ?";
-    
-    private final String SQL_SELECT_ALL = "SELECT * FROM cursada";
-    
-    private final String SQL_SELECT = "SELECT * FROM cursada WHERE idAlumno = ?";
-    
-    private final String SQL_SELECT_MAT = "SELECT materia.id, materia.nombre  FROM materia, cursada WHERE cursada.idMateria = materia.id AND cursada.idAlumno = ? ";
-    
-    private final String SQL_SELECT_NOT_MAT = "SELECT materia.id, materia.nombre  FROM materia, cursada WHERE cursada.idMateria = materia.id AND NOT cursada.idAlumno = ? ";
-    
-    private final String SQL_DELETE_MAT = "DELETE FROM cursada WHERE idAlumno = ? AND idMateria = ? ";
-    
-    private final String SQL_UPDATE_NOTA = "UPDATE cursada SET nota = ? WHERE idAlumno = ? AND idMateria = ? ";
-    
     public CursadaData(Conexion conexion) {
         try {
             this.conexion=conexion;
@@ -47,8 +31,9 @@ public class CursadaData {
     }
     
     public void guardarCursada(Cursada cursada){
+        String sql = "INSERT INTO cursada(idAlumno, idMateria, nota) VALUES (?, ?, ?)";
         try {
-            PreparedStatement statement = connection.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, cursada.getAlumno().getId());
             statement.setInt(2, cursada.getMateria().getId());
             statement.setInt(3, cursada.getNota());
@@ -70,8 +55,9 @@ public class CursadaData {
     
     public List<Cursada> obtenerCursadas(){
         List<Cursada> cursadas = new ArrayList<Cursada>();
+            String sql =  "SELECT * FROM cursada";
         try {
-            PreparedStatement statement = connection.prepareStatement(SQL_SELECT_ALL);
+            PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Cursada cursada;
             while(resultSet.next()){
@@ -94,10 +80,12 @@ public class CursadaData {
 
         return cursadas;
     }
+    
     public List<Cursada> obtenerCursadasXAlumno(int id){
+        String sql = "SELECT * FROM cursada WHERE idAlumno = ?";
         List<Cursada> cursadas = new ArrayList<Cursada>();
         try {
-            PreparedStatement statement = connection.prepareStatement(SQL_SELECT);
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1,id);
             ResultSet resultSet = statement.executeQuery();
             Cursada cursada;
@@ -122,7 +110,6 @@ public class CursadaData {
         return cursadas;
     }
 
-    
     public Alumno buscarAlumno(int id){
         AlumnoData ad=new AlumnoData(conexion);
         return ad.buscarAlumno(id);
@@ -134,15 +121,16 @@ public class CursadaData {
     }
     
     public List<Materia> obtenerMateriasCursadas(int id){
+        String sql = "SELECT materia.id, materia.nombre  FROM materia, cursada WHERE cursada.idMateria = materia.id AND cursada.idAlumno = ? ";
     List<Materia> materias = new ArrayList<Materia>();
         try {
-            PreparedStatement statement = connection.prepareStatement(SQL_SELECT_MAT);
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             Materia materia;
             while(resultSet.next()){
                 materia = new Materia();
-                materia.setId(resultSet.getInt("idMateria"));
+                materia.setId(resultSet.getInt("id"));
                 materia.setNombre(resultSet.getString("nombre"));
                 materias.add(materia);
             }      
@@ -155,9 +143,12 @@ public class CursadaData {
     }
     
     public List<Materia> obtenerMateriasNOCursadas(int id){
+        String sql = "SELECT materia.id, materia.nombre \n" +
+                        "FROM materia \n" +
+                        "WHERE materia.id NOT IN (SELECT cursada.idMateria FROM cursada where cursada.idAlumno = ?)";
     List<Materia> materias = new ArrayList<Materia>();
         try {
-            PreparedStatement statement = connection.prepareStatement(SQL_SELECT_NOT_MAT);
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             Materia materia;
@@ -177,8 +168,9 @@ public class CursadaData {
     }
     
     public void borrarCursadaDeUnaMateriaDeunAlumno(int idAlumno,int idMateria){
+        String sql = "DELETE FROM cursada WHERE idAlumno = ? AND idMateria = ? ;";
         try {
-            PreparedStatement statement = connection.prepareStatement(SQL_DELETE_MAT, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, idAlumno);
             statement.setInt(2, idMateria);
 
@@ -192,8 +184,9 @@ public class CursadaData {
     }
     
     public void actualizarNotaCursada(int idAlumno,int idMateria, int nota){  
+            String sql = "UPDATE cursada SET nota = ? WHERE idAlumno = ? AND idMateria = ? ";
         try {
-            PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_NOTA, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1,nota);
             statement.setInt(2, idAlumno);
             statement.setInt(3, idMateria);
