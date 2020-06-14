@@ -104,6 +104,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         menu_inscripcion.add(item_inscripcion);
 
         item_nota.setText("Registrar Notas de Alumno en Materia");
+        item_nota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_notaActionPerformed(evt);
+            }
+        });
         menu_inscripcion.add(item_nota);
 
         jMenuBar1.add(menu_inscripcion);
@@ -197,6 +202,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         escritorio.add(frm);
         escritorio.moveToFront(frm);
     }//GEN-LAST:event_item_inscripcionActionPerformed
+
+    private void item_notaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_notaActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        frmNota frm = new frmNota();
+        frm.setVisible(true);
+        escritorio.add(frm);
+        escritorio.moveToFront(frm);
+    }//GEN-LAST:event_item_notaActionPerformed
 
     /**
      * @param args the command line arguments
