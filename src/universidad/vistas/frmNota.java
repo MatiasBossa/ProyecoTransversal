@@ -194,6 +194,7 @@ public class frmNota extends javax.swing.JInternalFrame {
             
         }else{JOptionPane.showMessageDialog(null, "Error al modificar nota");}
         limpiar();
+        listaCursada = (ArrayList)cursadaData.obtenerCursadas();
         cargarDatosTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
