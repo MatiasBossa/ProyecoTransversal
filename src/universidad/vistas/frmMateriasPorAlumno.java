@@ -173,7 +173,7 @@ public class frmMateriasPorAlumno extends javax.swing.JInternalFrame {
         
         Alumno al = (Alumno)this.cbxAlumno.getSelectedItem();
         for(Cursada a:listaCursada) {
-            if (a.getMateria().getId() == al.getId() ) {
+            if (a.getAlumno().getId() == al.getId() ) {
                 modelo.addRow(new Object[]{a.getMateria().getId(), a.getMateria().getNombre(), a.getNota()});
             }
         }
