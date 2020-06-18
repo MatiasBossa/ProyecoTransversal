@@ -18,6 +18,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     public frmPrincipal() {
         initComponents();
         this.setSize(1024, 600);
+        this.setTitle("Sistema transversal. Universidad V 1.0");
     }
 
     /**
